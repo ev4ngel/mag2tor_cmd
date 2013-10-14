@@ -1,0 +1,20 @@
+<ts>
+	<torrent>
+		<tag>xunlei</tag>
+		<url>http://bt.box.n0808.com/</url>
+		<template>{url}{hashcode:0:2}/{hashcode:-2:}/{hashcode}.torrent</template>
+		<privilege>1</privilege>
+	</torrent>
+	<torrent>
+		<tag>torcache</tag>
+		<url>http://torcache.net/</url>
+		<template>{url}{hashcode}.torrent</template>
+		<privilege>2</privilege>
+	</torrent>
+	<torrent>
+		<tag>zoink</tag>
+		<url>http://zoink.it/</url>
+		<template>{url}{hashcode}.torrent</template>
+		<privilege>3</privilege>
+	</torrent>
+</ts>
