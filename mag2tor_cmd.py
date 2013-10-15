@@ -2,11 +2,12 @@
 import sys, re, os
 """
 mag2tor ["magnet_link"] [path_to_download]
+mag2tor [@magnet_file] [Path_to_download]
 """
 from dooo import *
 defaultpath=os.path.join(os.getcwd(),"torrents")
 def noQuotesWarning(_mag):
-    if not re.search(r'magnet.*&', _mag):
+    if len(_mag)==40:
         print "\n\n\nPlease Enbrace The magnet with \"\""
         print "Please Enbrace The magnet with \"\""
         print "Please Enbrace The magnet with \"\"\n\n\n\n"

@@ -34,9 +34,8 @@ class Magnet():
         return "magnet:?xt=urn:btin:{0}&dn={1}&tr={2}".format(self.__hashcode,urllib.quote(self.__title),"&tr=".join(self.__tracks))
 
 """
-url/(hashcode:0:2}/{hashcode:-2:0}/{hashcode}.torrent
-url/{hashcode}.torrent
-url/%urllib.quote({title})%
+{url}/(hashcode:0:2}/{hashcode:-2:0}/{hashcode}.torrent
+{url}/{hashcode}.torrent
 
 {title}=magnet.title
 {hashcode}=magnet.hashcode
@@ -103,9 +102,9 @@ class TorrentStoreManager():
         if index<len(self.__torrentStores)-1:
             self.__torrentStores[index],self.__torrentStores[index+1]=self.__torrentStores[index+1],self.__torrentStores[index]
             self._updatePri()
-    def parseTemplateToUrl(self,magnet):
-        for tpl in self.__torrentStores:
-            pass
+#    def parseTemplateToUrl(self,magnet):
+#        for tpl in self.__torrentStores:
+#            pass
     def torrentStores(self):
         return self.__torrentStores
             
@@ -133,14 +132,14 @@ class TorrentStore:
         self.__url=element.find("url").text
         self.__privilege=int(element.find("privilege").text)
         self.__template=element.find("template").text
-    def manipulatePri(self,other,doType=0):
-        if self.__privilege==other.getPrivilege()+doType:
-            if doType==INCREASE:
-                self.decreasePrivilege()
-            elif doType==DECREASE:
-                self.increasePrivilege()
-            else:
-                pass
+#    def manipulatePri(self,other,doType=0):
+#        if self.__privilege==other.getPrivilege()+doType:
+#            if doType==INCREASE:
+#                self.decreasePrivilege()
+#            elif doType==DECREASE:
+#                self.increasePrivilege()
+#            else:
+#                pass
     def toElement(self):
         e=Element("torrent")
         tag=Element("tag")
