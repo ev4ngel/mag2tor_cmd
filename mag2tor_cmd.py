@@ -1,27 +1,30 @@
 #-*- encoding:utf8 -*-
 import sys, re, os
-"""
+USE_HOW="""
 mag2tor ["magnet_link"] [path_to_download]
-mag2tor [@magnet_file] [Path_to_download]
+                     magnet_link must be Quoted by Double Qoutes
+
+mag2tor [@magnet_file] [Path_to_download]     
+                     magnet_file must be a file with magnet(s) per line
 """
 from dooo import *
 defaultpath=os.path.join(os.getcwd(),"torrents")
+def usage():
+    print USE_HOW
 def noQuotesWarning(_mag):
-    if len(_mag)==40:
-        print "\n\n\nPlease Enbrace The magnet with \"\""
-        print "Please Enbrace The magnet with \"\""
-        print "Please Enbrace The magnet with \"\"\n\n\n\n"
+    if len(_mag)==40:# I dont know how to exclude the unquoted magnet or just a file
+        usage()
         sys.exit(1)
 def getPath():
-    _path=raw_input("Path[Default:{0}]:\n".format(defaultpath))
+    _path=raw_input("\nPath[Default:{0}]:\n".format(defaultpath))
     if _path=="":
         _path=defaultpath
     if not os.path.exists(_path):
         try:
             os.mkdir(_path)
         except WindowError:
-            print "Fuck"
-            return None
+            print "Something Happened When Building Directory [{0}]".format(_path)
+            sys.exit(1)
     return _path
 def mgts2list(mag):
     mgts=[]
@@ -36,6 +39,9 @@ def mgts2list(mag):
     return mgts
 def noParam( ):
     _mag=raw_input("Magnet:\n")
+    if _mag=="":
+        usage()
+        sys.exit(1)
     _path=getPath()
     twoParams(_mag, _path)
 def oneParam(_mag):
