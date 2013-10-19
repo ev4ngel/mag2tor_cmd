@@ -12,7 +12,7 @@ defaultpath=os.path.join(os.getcwd(),"torrents")
 def usage():
     print USE_HOW
 def noQuotesWarning(_mag):
-    if len(_mag)==40:# I dont know how to exclude the unquoted magnet or just a file
+    if re.search(r"magnet.*:\w{40}$",_mag):# I dont know how to exclude the unquoted magnet or just a file
         usage()
         sys.exit(1)
 def getPath():
